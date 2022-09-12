@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.additional">
+            <container name="random.product.sidebar" label="Custom Sidebar" htmlTag="div" htmlClass="block block-random-product">
+                <block class="Dudchenko\RandomProductSidebar\Block\ProductSidebar"
+                       name="random_product_sidebar"
+                       as="product_sidebar"
+                       template="Dudchenko_RandomProductSidebar::sidebar.phtml"
+                       cacheable="false">
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

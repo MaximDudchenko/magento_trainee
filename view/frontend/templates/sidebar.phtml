@@ -1,0 +1,48 @@
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Dudchenko\RandomProductSidebar\Block\ProductSidebar
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$_productCollection = $block->getProductCollection();
+?>
+<div class="block-title">
+    <strong role="heading" aria-level="2"><?= $block->escapeHtml(__('Random Products')); ?></strong>
+</div>
+<div class="block-content">
+    <div class="sidebar product-sidebar products wrapper list products-list">
+        <ol class="list items product-sidebar-items">
+            <?php foreach ($_productCollection as $_product): ?>
+                <li class="product-sidebar-item item product product-item ">
+                    <div class="product-item-info">
+                        <a class="product photo product-item-photo"
+                           href="<?= $block->escapeUrl($block->getProductUrl($_product)); ?>"
+                           style="padding: 0 20px 0 0">
+                        <span class="product-image-container" style="width: 60px;">
+                            <span class="product-image-wrapper">
+                                <img class="product-image-photo"
+                                     src="<?= $block->escapeUrl($block->getProductImageUrl($_product)); ?>"
+                                     alt="<?= $block->escapeHtml($_product->getName()); ?>">
+                            </span>
+                        </span>
+                        </a>
+                        <div class="product details product-item-details">
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link"
+                                   href="<?= $block->escapeUrl($block->getProductUrl($_product)); ?>">
+                                    <?= $block->escapeHtml($_product->getName()); ?>
+                                </a>
+                            </strong>
+
+                            <strong class="product price product-item-price">
+                                <?= $block->escapeHtml($block->getProductPrice($_product)); ?>
+                            </strong>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+</div>
+
