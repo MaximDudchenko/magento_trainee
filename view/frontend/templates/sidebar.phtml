@@ -16,10 +16,9 @@ $productCollection = $block->getProductCollection();
             <?php foreach ($productCollection as $product): ?>
                 <li class="product-sidebar-item item product product-item ">
                     <div class="product-item-info">
-                        <a class="product photo product-item-photo"
-                           href="<?= $block->escapeUrl($block->getProductUrl($product)); ?>"
-                           style="padding: 0 20px 0 0">
-                        <span class="product-image-container" style="width: 60px;">
+                        <a class="product photo product-item-photo product-photo-sidebar"
+                           href="<?= $block->escapeUrl($block->getProductUrl($product)); ?>">
+                        <span class="product-image-container product-image-container-sidebar">
                             <span class="product-image-wrapper">
                                 <img class="product-image-photo"
                                      src="<?=
