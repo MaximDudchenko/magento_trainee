@@ -5,38 +5,46 @@
  * @var $block \Dudchenko\RandomProductSidebar\Block\ProductSidebar
  * @var \Magento\Framework\Escaper $escaper
  */
-$_productCollection = $block->getProductCollection();
+$productCollection = $block->getProductCollection();
 ?>
 <div class="block-title">
-    <strong role="heading" aria-level="2"><?= $block->escapeHtml(__('Random Products')); ?></strong>
+    <strong role="heading" aria-level="2"><?= __('Random Products'); ?></strong>
 </div>
 <div class="block-content">
     <div class="sidebar product-sidebar products wrapper list products-list">
         <ol class="list items product-sidebar-items">
-            <?php foreach ($_productCollection as $_product): ?>
+            <?php foreach ($productCollection as $product): ?>
                 <li class="product-sidebar-item item product product-item ">
                     <div class="product-item-info">
                         <a class="product photo product-item-photo"
-                           href="<?= $block->escapeUrl($block->getProductUrl($_product)); ?>"
+                           href="<?= $block->escapeUrl($block->getProductUrl($product)); ?>"
                            style="padding: 0 20px 0 0">
                         <span class="product-image-container" style="width: 60px;">
                             <span class="product-image-wrapper">
                                 <img class="product-image-photo"
-                                     src="<?= $block->escapeUrl($block->getProductImageUrl($_product)); ?>"
-                                     alt="<?= $block->escapeHtml($_product->getName()); ?>">
+                                     src="<?=
+                                     $block->escapeUrl(
+                                         $this->helper(\Magento\Catalog\Helper\Image::class)
+                                              ->init($product, 'product_page_image_thumbnail')
+                                              ->setImageFile($product->getThumbnail())
+                                              ->resize(60, 80)
+                                              ->getUrl()
+                                     );
+                                     ?>"
+                                     alt="<?= $block->escapeHtml($product->getName()); ?>">
                             </span>
                         </span>
                         </a>
                         <div class="product details product-item-details">
                             <strong class="product name product-item-name">
                                 <a class="product-item-link"
-                                   href="<?= $block->escapeUrl($block->getProductUrl($_product)); ?>">
-                                    <?= $block->escapeHtml($_product->getName()); ?>
+                                   href="<?= $block->escapeUrl($block->getProductUrl($product)); ?>">
+                                    <?= $block->escapeHtml($product->getName()); ?>
                                 </a>
                             </strong>
 
                             <strong class="product price product-item-price">
-                                <?= $block->escapeHtml($block->getProductPrice($_product)); ?>
+                                <?= $block->escapeHtml($block->getProductPrice($product)); ?>
                             </strong>
                         </div>
                     </div>
